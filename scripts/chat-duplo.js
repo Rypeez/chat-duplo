@@ -149,17 +149,14 @@ function buildBar() {
     const a = document.createElement("a");
     a.className = "chat-duplo-tab";
     a.dataset.view = view;
+    a.setAttribute("role", "button");
     a.innerHTML = `<span class="chat-duplo-tab-name"></span><span class="chat-duplo-badge"></span>`;
-    a.addEventListener("click", (ev) => {
-      ev.preventDefault();
-      setView(view);
-    });
     tabs.append(a);
   }
 
   const send = document.createElement("label");
   send.className = "chat-duplo-send";
-  send.innerHTML = `<i class="fas fa-paper-plane"></i><select></select>`;
+  send.innerHTML = `<i class="fas fa-paper-plane"></i><span class="chat-duplo-send-label"></span><select></select>`;
   send.title = t("SendTo");
   const select = send.querySelector("select");
   for (const ch of CHANNELS) {
@@ -167,10 +164,38 @@ function buildBar() {
     opt.value = ch;
     select.append(opt);
   }
-  select.addEventListener("change", (ev) => setSendTo(ev.currentTarget.value));
 
   bar.append(tabs, send);
   return bar;
+}
+
+/**
+ * Cliques tratados por delegação no documento (fase de captura).
+ * Assim continuam funcionando mesmo se outro módulo (ex.: abas de chat,
+ * Damage Log) recriar/clonar o HTML do chat ou bloquear a propagação.
+ */
+function registerDelegatedListeners() {
+  document.addEventListener(
+    "click",
+    (ev) => {
+      const tab = ev.target.closest?.(".chat-duplo-tab");
+      if (!tab) return;
+      ev.preventDefault();
+      ev.stopPropagation();
+      setView(tab.dataset.view);
+    },
+    true
+  );
+  document.addEventListener(
+    "change",
+    (ev) => {
+      const select = ev.target.closest?.(".chat-duplo-send select");
+      if (!select) return;
+      ev.stopPropagation();
+      setSendTo(select.value);
+    },
+    true
+  );
 }
 
 function updateBar(bar) {
@@ -187,6 +212,7 @@ function updateBar(bar) {
     badge.hidden = !count;
   }
 
+  bar.querySelector(".chat-duplo-send-label").textContent = t("SendShort");
   const select = bar.querySelector("select");
   for (const opt of select.options) opt.textContent = channelName(opt.value);
   select.value = sendTo;
@@ -300,6 +326,7 @@ Hooks.once("init", () => {
 
 Hooks.once("ready", () => {
   game.modules.get(MOD).api = api;
+  registerDelegatedListeners();
   refreshAll();
   scrollChatToBottom();
 });

@@ -1,6 +1,7 @@
 {
   "CHATDUPLO": {
     "Both": "Ambos",
+    "SendShort": "Enviar em:",
     "SendTo": "Canal onde suas mensagens e rolagens serão enviadas",
     "MoveTo": "Mover para {name}",
     "Settings": {

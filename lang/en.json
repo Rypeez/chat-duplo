@@ -1,6 +1,7 @@
 {
   "CHATDUPLO": {
     "Both": "Both",
+    "SendShort": "Send to:",
     "SendTo": "Channel your messages and rolls are sent to",
     "MoveTo": "Move to {name}",
     "Settings": {
