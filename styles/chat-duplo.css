@@ -1,0 +1,98 @@
+/* ---------- Filtro de canais (vale para sidebar, popout e notificações) ---------- */
+body[data-chat-duplo-view="1"] [data-chat-duplo-channel="2"],
+body[data-chat-duplo-view="2"] [data-chat-duplo-channel="1"] {
+  display: none !important;
+}
+
+/* ---------- Barra de abas ---------- */
+.chat-duplo-bar {
+  --cd-c1: #2f6db5;
+  --cd-c2: #b5602f;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 0 0 auto;
+  padding: 4px 4px 2px;
+  border-bottom: 1px solid var(--color-border-light-primary, rgba(0, 0, 0, 0.25));
+}
+
+.chat-duplo-tabs {
+  display: flex;
+  flex: 1;
+  gap: 2px;
+  min-width: 0;
+}
+
+.chat-duplo-tab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-width: 0;
+  padding: 3px 4px;
+  border-radius: 4px 4px 0 0;
+  border-bottom: 2px solid transparent;
+  font-size: var(--font-size-13, 13px);
+  cursor: pointer;
+  opacity: 0.7;
+  white-space: nowrap;
+}
+.chat-duplo-tab-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.chat-duplo-tab:hover { opacity: 1; }
+.chat-duplo-tab.active {
+  opacity: 1;
+  font-weight: bold;
+  background: rgba(127, 127, 127, 0.15);
+}
+.chat-duplo-tab[data-view="1"].active { border-bottom-color: var(--cd-c1); }
+.chat-duplo-tab[data-view="2"].active { border-bottom-color: var(--cd-c2); }
+.chat-duplo-tab[data-view="all"].active { border-bottom-color: currentColor; }
+
+.chat-duplo-badge {
+  min-width: 16px;
+  padding: 0 4px;
+  border-radius: 8px;
+  background: #c0392b;
+  color: #fff;
+  font-size: 10px;
+  line-height: 16px;
+  text-align: center;
+}
+.chat-duplo-badge[hidden] { display: none; }
+
+.chat-duplo-send {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 0 0 auto;
+}
+.chat-duplo-send select {
+  height: 22px;
+  max-width: 90px;
+  font-size: 12px;
+  padding: 0 2px;
+}
+.chat-duplo-bar[data-send-to="1"] .chat-duplo-send i { color: var(--cd-c1); }
+.chat-duplo-bar[data-send-to="2"] .chat-duplo-send i { color: var(--cd-c2); }
+
+/* ---------- Identificação das mensagens ---------- */
+.chat-duplo-label { display: none; }
+
+body[data-chat-duplo-view="all"] .chat-duplo-label {
+  display: inline-block;
+  margin-right: 4px;
+  padding: 0 4px;
+  border-radius: 3px;
+  font-size: 10px;
+  line-height: 14px;
+  color: #fff;
+}
+body[data-chat-duplo-view="all"] [data-chat-duplo-channel="1"] .chat-duplo-label { background: #2f6db5; }
+body[data-chat-duplo-view="all"] [data-chat-duplo-channel="2"] .chat-duplo-label { background: #b5602f; }
+
+body[data-chat-duplo-view="all"] [data-chat-duplo-channel="1"] { border-left: 3px solid #2f6db5 !important; }
+body[data-chat-duplo-view="all"] [data-chat-duplo-channel="2"] { border-left: 3px solid #b5602f !important; }

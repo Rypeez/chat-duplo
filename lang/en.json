@@ -1,0 +1,19 @@
+{
+  "CHATDUPLO": {
+    "Both": "Both",
+    "SendTo": "Channel your messages and rolls are sent to",
+    "MoveTo": "Move to {name}",
+    "Settings": {
+      "Name1": { "Name": "Channel 1 name", "Hint": "Name shown on the first channel's tab." },
+      "Name2": { "Name": "Channel 2 name", "Hint": "Name shown on the second channel's tab." },
+      "DefaultChannel": {
+        "Name": "Default channel for old messages",
+        "Hint": "Messages created before the module was enabled (no channel set) appear in this channel."
+      },
+      "LinkSend": {
+        "Name": "Send to the open tab's channel",
+        "Hint": "Switching tabs also switches the send channel. Disable to choose the send channel only with the selector."
+      }
+    }
+  }
+}

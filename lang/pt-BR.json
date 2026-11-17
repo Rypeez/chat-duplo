@@ -1,0 +1,19 @@
+{
+  "CHATDUPLO": {
+    "Both": "Ambos",
+    "SendTo": "Canal onde suas mensagens e rolagens serão enviadas",
+    "MoveTo": "Mover para {name}",
+    "Settings": {
+      "Name1": { "Name": "Nome do Canal 1", "Hint": "Nome exibido na aba do primeiro canal." },
+      "Name2": { "Name": "Nome do Canal 2", "Hint": "Nome exibido na aba do segundo canal." },
+      "DefaultChannel": {
+        "Name": "Canal padrão de mensagens antigas",
+        "Hint": "Mensagens criadas antes do módulo ser ativado (sem canal definido) aparecem neste canal."
+      },
+      "LinkSend": {
+        "Name": "Enviar no canal da aba aberta",
+        "Hint": "Ao trocar de aba, o canal de envio muda junto. Desative para escolher o canal de envio só pelo seletor."
+      }
+    }
+  }
+}
